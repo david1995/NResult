@@ -1,7 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <NResult_StartYear>2019</NResult_StartYear>
+    <NResult_CurrentYear>$([System.DateTime]::get_Now().get_Year())</NResult_CurrentYear>
+    <NResult_Copyright Condition="'$(NResult_CurrentYear)' == '$(NResult_StartYear)'">© 2019 by david1995</NResult_Copyright>
+    <NResult_Copyright Condition="'$(NResult_CurrentYear)' != '$(NResult_StartYear)'">© 2019-$(NResult_CurrentYear) by david1995</NResult_Copyright>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <PackageId>NResult</PackageId>
+    <Authors>david1995</Authors>
+    <PackageDescription>
+      A simple and extensible result pattern library for C#/.NET
+    </PackageDescription>
+    <PackageTags></PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>$(NResult_Copyright)</Copyright>
+    <Repository>
+      <Url>https://github.com/david1995/NResult</Url>
+      <Type>git</Type>
+    </Repository>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.0.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>
