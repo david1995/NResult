@@ -1,0 +1,16 @@
+name: NResult.CI
+
+trigger:
+- master
+
+resources:
+- repo: self
+  clean: true
+
+jobs:
+- template: build.yml
+  parameters:
+    name: NResultCI
+    artifactFileName: '$(Build.ArtifactStagingDirectory)/NResult-CI.zip'
+    pool:
+      vmImage: 'Ubuntu 16.04'
