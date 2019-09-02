@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace NResult
 {
+    /// <summary>
+    /// A static factory class for the included Result values.
+    /// </summary>
     public static class Result
     {
         public static ISuccess Success()
