@@ -21,14 +21,14 @@ jobs:
 
   - task: PowerShell@2
     displayName: 'build Debug'
-    inputs: 
+    inputs:
       filePath: build/build.ps1
       workingDirectory: ./
       arguments: Debug
 
   - task: PowerShell@2
     displayName: 'build Release'
-    inputs: 
+    inputs:
       filePath: build/build.ps1
       workingDirectory: ./
       arguments: Release
@@ -37,11 +37,11 @@ jobs:
     displayName: 'Archive $(Build.SourcesDirectory)'
     inputs:
       rootFolderOrFile: '$(Build.SourcesDirectory)'
-      archiveFile: ${{ parameters.artifactFileName }} 
+      archiveFile: ${{ parameters.artifactFileName }}
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: NResult-CI-BuildResult'
     inputs:
-      PathtoPublish: ${{ parameters.artifactFileName }} 
+      PathtoPublish: ${{ parameters.artifactFileName }}
       artifactType: container
       ArtifactName: 'NResult-CI-BuildResult'
