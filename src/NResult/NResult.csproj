@@ -13,9 +13,9 @@
     <PackageId>NResult</PackageId>
     <Authors>david1995</Authors>
     <PackageDescription>
-      A simple and extensible result pattern library for C#/.NET
+      A simple and extensible result pattern library for .NET
     </PackageDescription>
-    <PackageTags></PackageTags>
+    <PackageTags>Result;Result Pattern</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>$(NResult_Copyright)</Copyright>
     <Repository>
