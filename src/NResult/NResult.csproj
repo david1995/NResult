@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
     <PackageId>NResult</PackageId>
     <Authors>david1995</Authors>
     <PackageDescription>
@@ -22,6 +21,11 @@
       <Type>git</Type>
     </Repository>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <GenerateDocumentationFile Condition="'$(Target)' == 'Release'">true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
