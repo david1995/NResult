@@ -22,7 +22,6 @@
       <Url>https://github.com/david1995/NResult</Url>
       <Type>git</Type>
     </Repository>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
