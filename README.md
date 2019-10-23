@@ -28,7 +28,7 @@ Search for `NResult`, select it and install it.
 The following command installs the NResult NuGet package into the current project:
 
 ```powershell
-Install-Package Microsoft.AspNet.MVC
+Install-Package NResult
 ```
 
 ## License
