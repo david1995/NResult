@@ -34,10 +34,10 @@ jobs:
       arguments: Release
 
   - task: DotNetCoreCLI@2
-    displayName: 'dotnet test'
+    displayName: 'dotnet test unit-tests'
     inputs:
       command: test
-      projects: 'test/unit-tests/**/*.Tests.dll'
+      projects: 'test/unit-tests/**/*.Tests.csproj'
 
   - task: ArchiveFiles@2
     displayName: 'Archive $(Build.SourcesDirectory)'
