@@ -17,6 +17,11 @@ jobs:
   - task: DotNetCoreInstaller@2
     displayName: 'Use .NET Core'
     inputs:
+      version: 5.x
+
+  - task: DotNetCoreInstaller@2
+    displayName: 'Use .NET Core'
+    inputs:
       version: ${{ parameters.sdkVersion }}
 
   - task: PowerShell@2
