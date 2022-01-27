@@ -13,4 +13,4 @@ jobs:
     name: NResultCI
     artifactFileName: '$(Build.ArtifactStagingDirectory)/NResult-CI.zip'
     pool:
-      vmImage: 'Ubuntu 16.04'
+      vmImage: 'ubuntu-latest'
