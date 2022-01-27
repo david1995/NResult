@@ -13,4 +13,4 @@ jobs:
     name: NResultCI
     artifactFileName: '$(Build.ArtifactStagingDirectory)/NResult-CI.zip'
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'windows-2022'
