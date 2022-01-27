@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace NResult.Extensions
 {
@@ -14,6 +15,15 @@ namespace NResult.Extensions
             return result;
         }
 
+        public static IEnumerable<IFailure> FlattenFailure(this IFailure failure)
+        {
+            return failure switch
+            {
+                IAggregateFailure aggregateFailure => aggregateFailure.Failures.SelectMany(FlattenFailure),
+                _ => Enumerable.Repeat(failure, 1)
+            };
+        }
+
         public static bool IsFailure(this IResult result)
         {
             return Result.IsFailure(result);
@@ -22,6 +32,11 @@ namespace NResult.Extensions
         public static bool IsSuccess(this IResult result)
         {
             return Result.IsSuccess(result);
+        }
+
+        public static bool IsSuccess<T>(this IResult<T> result, out T? value)
+        {
+            return Result.IsSuccess(result, out value);
         }
 
         public static IAggregateFailure Aggregate(this IFailure failure1, IFailure failure2)

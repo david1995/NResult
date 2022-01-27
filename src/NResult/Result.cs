@@ -75,5 +75,17 @@ namespace NResult
         {
             return result is ISuccess _;
         }
+
+        public static bool IsSuccess<T>(IResult<T> result, out T? value)
+        {
+            if (result is ISuccess<T> { Value: var val })
+            {
+                value = val;
+                return true;
+            }
+
+            value = default;
+            return false;
+        }
     }
 }

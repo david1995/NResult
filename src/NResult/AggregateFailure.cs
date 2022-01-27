@@ -9,6 +9,11 @@ namespace NResult
             Failures = failures;
         }
 
+        public AggregateFailure(params IFailure[] failures)
+            : this((IReadOnlyList<IFailure>)failures)
+        {
+        }
+
         public IReadOnlyList<IFailure> Failures { get; }
     }
 
@@ -17,6 +22,11 @@ namespace NResult
         public AggregateFailure(IReadOnlyList<IFailure> failures)
         {
             Failures = failures;
+        }
+
+        public AggregateFailure(params IFailure[] failures)
+            : this((IReadOnlyList<IFailure>)failures)
+        {
         }
 
         public IReadOnlyList<IFailure> Failures { get; }
