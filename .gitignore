@@ -207,7 +207,7 @@ _pkginfo.txt
 # Visual Studio cache files
 # files ending in .cache can be ignored
 *.[Cc]ache
-# but keep track of directories ending in .cache
+# but keep track of directories ending in .caches
 !*.[Cc]ache/
 
 # Others
@@ -217,7 +217,7 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
-*.pfx
+# *.pfx
 *.publishsettings
 orleans.codegen.cs
 

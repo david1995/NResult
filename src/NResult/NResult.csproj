@@ -8,23 +8,22 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;net48;netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard1.3;netstandard2.0;netstandard2.1;net48;netcoreapp3.1;net5.0</TargetFrameworks>
+    <GenerateDocumentationFile Condition="'$(Target)' == 'Release'">true</GenerateDocumentationFile>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
-
     <PackageId>NResult</PackageId>
     <Authors>david1995</Authors>
     <PackageDescription>
-      A simple and extensible result pattern library for C#/.NET
+      A simple and extensible result pattern library for .NET
     </PackageDescription>
-    <PackageTags></PackageTags>
+    <PackageTags>Result;Result Pattern</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>$(NResult_Copyright)</Copyright>
     <Repository>
       <Url>https://github.com/david1995/NResult</Url>
       <Type>git</Type>
     </Repository>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.0.25">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.0.26">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

@@ -2,7 +2,7 @@ parameters:
   name: ''
   pool: ''
   nugetVersion: 4.9.2
-  sdkVersion: 2.2.401
+  sdkVersion: 3.0.100
   artifactFileName: ''
 
 jobs:
@@ -21,27 +21,33 @@ jobs:
 
   - task: PowerShell@2
     displayName: 'build Debug'
-    inputs: 
+    inputs:
       filePath: build/build.ps1
       workingDirectory: ./
       arguments: Debug
 
   - task: PowerShell@2
     displayName: 'build Release'
-    inputs: 
+    inputs:
       filePath: build/build.ps1
       workingDirectory: ./
       arguments: Release
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet test unit-tests'
+    inputs:
+      command: test
+      projects: 'test/unit-tests/**/*.Tests.csproj'
 
   - task: ArchiveFiles@2
     displayName: 'Archive $(Build.SourcesDirectory)'
     inputs:
       rootFolderOrFile: '$(Build.SourcesDirectory)'
-      archiveFile: ${{ parameters.artifactFileName }} 
+      archiveFile: ${{ parameters.artifactFileName }}
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: NResult-CI-BuildResult'
     inputs:
-      PathtoPublish: ${{ parameters.artifactFileName }} 
+      PathtoPublish: ${{ parameters.artifactFileName }}
       artifactType: container
       ArtifactName: 'NResult-CI-BuildResult'
