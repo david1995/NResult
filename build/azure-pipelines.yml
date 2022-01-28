@@ -7,10 +7,55 @@ resources:
 - repo: self
   clean: true
 
-jobs:
-- template: build.yml
-  parameters:
-    name: NResultCI
-    artifactFileName: '$(Build.ArtifactStagingDirectory)/NResult-CI.zip'
-    pool:
-      vmImage: 'windows-2022'
+stages:
+- stage: Build
+  jobs:
+  - template: build.yml
+    parameters:
+      name: NResultCI
+      artifactFileName: '$(Build.ArtifactStagingDirectory)/NResult-CI.zip'
+      pool:
+        vmImage: 'windows-2022'
+
+- stage: Publish
+  dependsOn: Build
+  condition: succeeded('Build')
+  jobs:
+  - job: Publish
+    steps:
+      - task: ManualIntervention@8
+        inputs:
+          instructions: 'Publish?'
+      - task: DownloadBuildArtifacts@1
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'NResult-CI-BuildResult'
+          downloadPath: '$(System.ArtifactsDirectory)'
+      - task: UseDotNet@2
+        inputs:
+          packageType: 'sdk'
+          version: '6.x'
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'pack'
+          packagesToPack: '$(NResult.ExtractedBuildResultFolder)/s/src/**/*.csproj'
+          versioningScheme: 'byBuildNumber'
+      - task: NuGetCommand@2
+        inputs:
+          command: 'push'
+          packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+          nuGetFeedType: 'external'
+          publishFeedCredentials: 'NResult NuGet Server [2022]'
+      - task: GitHubRelease@1
+        inputs:
+          gitHubConnection: 'david1995 NResult Publish'
+          repositoryName: 'david1995/NResult'
+          action: 'create'
+          target: '$(Build.SourceVersion)'
+          tagSource: 'gitTag'
+          tagPattern: 'v[0-9]+\.[0-9]+\.[0-9]+'
+          title: 'Release v$(Build.BuildNumber)'
+          assets: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+          changeLogCompareToRelease: 'lastFullRelease'
+          changeLogType: 'commitBased'
