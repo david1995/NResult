@@ -23,9 +23,6 @@ stages:
   jobs:
   - job: Publish
     steps:
-      - task: ManualIntervention@8
-        inputs:
-          instructions: 'Publish?'
       - task: DownloadBuildArtifacts@1
         inputs:
           buildType: 'current'
